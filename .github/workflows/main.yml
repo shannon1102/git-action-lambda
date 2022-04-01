@@ -26,4 +26,9 @@ jobs:
         run: |
           npx ncc build index.ts
           zip -j deploy.zip ./dist/*
-          aws lambda create-function --function-name=lambda-gh-action2  --runtime nodejs12.x --zip-file=fileb://deploy.zip  --handler my-index.handler 
+          aws lambda create-function \
+          --function-name=lambda-gh-action2 \  
+          --runtime nodejs12.x
+          --zip-file=fileb://deploy.zip \
+          --handler index.handler \
+          --role arn:aws:iam::324015162204:role/service-role/lambda-gh-action-role-2agc55wh
